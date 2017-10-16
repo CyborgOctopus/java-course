@@ -384,6 +384,37 @@ public class R2PlusPlus extends R2 {
     }
 
     /**
+     * Allows R2PlusPlus to move in a straight line until it either encounters an obstacle or makes 'maxDistance'
+     * forward motions.
+     * <p></p>
+     * Precondition: R2PlusPlus has been spawned.
+     * <p></p>
+     * Postcondition: R2PlusPlus has moved in the direction it is facing by 'maxDistance' moves or has stopped due to
+     * an encounter with an obstacle.
+     * @param maxDistance specifies the maximum number of moves that R2PlusPlus will make if it is not blocked
+     */
+    public void moveUntilBlocked(int maxDistance) {
+        int i = 0;
+        while (super.frontIsClear() && i < maxDistance) {
+            this.move();
+            i++;
+        }
+    }
+
+    /**
+     * Allows R2PlusPlus to move in a straight line until it encounters an obstacle.
+     * <p></p>
+     * Precondition: R2PlusPlus has been spawned.
+     * <p></p>
+     * Postcondition: R2PlusPlus has moved in whatever direction it was facing until it encounters an obstacle.
+     */
+    public void moveUntilBlocked() {
+        while (super.frontIsClear()) {
+            this.move();
+        }
+    }
+
+    /**
      * Causes an instance of the R2PlusPlus class to move a specified number of spaces in the direction it is currently
      * facing, unless it encounters an obstacle which causes it to crash. If 'getFlashlight' is 'true', it picks up one
      * flashlight on every space containing a flashlight that it occupies. If 'getAllFlashlights' is 'true', it picks up
